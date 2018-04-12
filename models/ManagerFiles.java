@@ -4,14 +4,17 @@ import java.io.File;
 import java.io.FilenameFilter;
 import java.util.ArrayList;
 import exceptions.ExceptionNodeNotFound;
+import utils.Util;
 
 public class ManagerFiles implements FilenameFilter{
 
 	private TreeN<String> treeFiles;
 	private ArrayList<String> filesFound;
+	private ArrayList<String> subFolders;
 
 	public ManagerFiles() {
 		filesFound = new ArrayList<String>();
+		subFolders = new ArrayList<String>();
 	}
 
 	public void initTree(String folder) {
@@ -30,6 +33,37 @@ public class ManagerFiles implements FilenameFilter{
 				obtainFilesInMainFolder(file);
 			}else {
 				filesFound.add(file.getName());
+				verifySubFolderExist(file);
+			}
+		}
+	}
+
+	private void verifySubFolderExist(File file) {
+		String extension = Util.getExtension(file.getName());
+		if (subFolders.size() > 0) {
+			for (int i = 0; i < subFolders.size(); i++) {
+				if (!subFolders.contains(extension)) {
+					subFolders.add(extension);
+				}				
+			}
+		}else {
+			subFolders.add(extension);
+		}
+	}
+	
+	public void addSubFolders() {
+		if (!subFolders.isEmpty()) {
+			for (String subFolder: subFolders) {
+				treeFiles.addNode(treeFiles.getRoot(), subFolder);							
+			}
+		}
+	}
+	
+	public void printSubFolders() {
+		if (!subFolders.isEmpty()) {
+			System.out.println("-------------Subcarpetas--------");
+			for (int i = 0; i < subFolders.size(); i++) {
+				System.out.println(subFolders.get(i));				
 			}
 		}
 	}

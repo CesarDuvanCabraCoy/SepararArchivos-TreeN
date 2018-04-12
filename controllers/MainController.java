@@ -3,6 +3,8 @@ package controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+
+import exceptions.ExceptionNodeNotFound;
 import models.ManagerFiles;
 import views.JFCFolder;
 import views.MainWindow;
@@ -27,7 +29,6 @@ public class MainController implements ActionListener{
 			jfcFolder.showFileChooser();
 			obtainFolder();
 			break;
-
 		default:
 			break;
 		}
@@ -39,5 +40,7 @@ public class MainController implements ActionListener{
 		System.out.println("Folder: " + managerFiles.getTreeFiles().getRoot().getInfo());
 		managerFiles.obtainFilesInMainFolder(file);
 		managerFiles.printFilesFound();
+		managerFiles.addSubFolders();
+		managerFiles.printSubFolders();
 	}
 }
