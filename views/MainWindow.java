@@ -16,10 +16,11 @@ public class MainWindow extends JFrame {
 	public MainWindow(MainController mainController) {
 		this.mainController = mainController;
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setExtendedState(MAXIMIZED_BOTH);
+		this.setSize(ConstantsGUI.WIDTH_JF, ConstantsGUI.HEIGHT_JF);
 		setIconImage(new ImageIcon(getClass().getResource(ConstantsGUI.MAIN_ICON)).getImage());
 		setName(ConstantsGUI.NAME_APP);
 		setLayout(new BorderLayout());
+		this.setLocationRelativeTo(null);
 		init();
 		this.setVisible(true);
 	}
@@ -34,6 +35,5 @@ public class MainWindow extends JFrame {
 	
 	public void paintTree(NodeTN<String> root) {
 		jpTreeFiles.printJTree(root);
-		this.repaint();
 	}
 }

@@ -14,4 +14,6 @@ public class ConstantsGUI {
 	public static final String TYPE_LETTER ="Times New Roman";
 	public static final String JL_SIZE = "Tamaño (Mb)";
 	public static final String JB_ACCEPT = "Accept";
+	public static final int WIDTH_JF = 600;
+	public static final int HEIGHT_JF = 600;
 }

@@ -1,5 +1,7 @@
 package views;
 
+import java.awt.Color;
+
 import javax.swing.JPanel;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -10,11 +12,15 @@ public class JPTreeFiles extends JPanel{
 
 	private static final long serialVersionUID = 1L;
 	
+	public JPTreeFiles() {
+		this.setBackground(Color.WHITE);
+	}
+	
 	public void printJTree(NodeTN<String> treeN){
 		DefaultMutableTreeNode root = searchBreadFirstaaa(treeN);
 		JTree treePaint = new JTree(root);
 		this.add(treePaint);
-		this.repaint();
+		this.revalidate();
 	}
 
 	public static DefaultMutableTreeNode searchBreadFirstaaa(NodeTN<String> treeNario) {
