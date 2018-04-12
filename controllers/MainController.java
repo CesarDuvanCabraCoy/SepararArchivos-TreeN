@@ -37,5 +37,7 @@ public class MainController implements ActionListener{
 		file = jfcFolder.getFile();
 		managerFiles.initTree(file.getName());
 		System.out.println("Folder: " + managerFiles.getTreeFiles().getRoot().getInfo());
+		managerFiles.obtainFilesInMainFolder(file);
+		managerFiles.printFilesFound();
 	}
 }
