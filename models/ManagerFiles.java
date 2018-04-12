@@ -51,6 +51,13 @@ public class ManagerFiles implements FilenameFilter{
 		}
 	}
 	
+	public void createNodesBySize(String size) {
+		for (NodeTN<String> nodeExtension: treeFiles.getRoot().getChilds()) {
+			nodeExtension.addNode(new NodeTN<String>(ConstantsMOD.FOLDER_HIGHER + size));
+			nodeExtension.addNode(new NodeTN<String>(ConstantsMOD.FOLDER_LESS + size));
+		}
+	}
+	
 	public void addSubFolders() {
 		if (!subFolders.isEmpty()) {
 			for (String subFolder: subFolders) {
