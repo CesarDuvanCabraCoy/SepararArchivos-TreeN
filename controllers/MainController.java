@@ -45,6 +45,7 @@ public class MainController implements ActionListener{
 		String size = String.valueOf(jdSelectSize.getSizeFile());
 		managerFiles.createNodesBySize(size);
 		jdSelectSize.setVisible(false);
+		mainWindow.paintTree(managerFiles.getTreeFiles().getRoot());
 	}
 
 	private void obtainFolder() {

@@ -4,11 +4,13 @@ import java.awt.BorderLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import controllers.MainController;
+import models.NodeTN;
 
 public class MainWindow extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JTBMain jtbMain;
+	private JPTreeFiles jpTreeFiles;
 	private MainController mainController;
 
 	public MainWindow(MainController mainController) {
@@ -25,5 +27,12 @@ public class MainWindow extends JFrame {
 	private void init() {
 		jtbMain = new JTBMain(mainController);
 		this.add(jtbMain, BorderLayout.NORTH);
+		
+		jpTreeFiles = new JPTreeFiles();
+		this.add(jpTreeFiles, BorderLayout.CENTER);
+	}
+	
+	public void paintTree(NodeTN<String> root) {
+		jpTreeFiles.printJTree(root);
 	}
 }
