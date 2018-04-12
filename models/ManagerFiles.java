@@ -9,11 +9,11 @@ import utils.Util;
 public class ManagerFiles implements FilenameFilter{
 
 	private TreeN<String> treeFiles;
-	private ArrayList<String> filesFound;
+	private ArrayList<File> filesFound;
 	private ArrayList<String> subFolders;
 
 	public ManagerFiles() {
-		filesFound = new ArrayList<String>();
+		filesFound = new ArrayList<File>();
 		subFolders = new ArrayList<String>();
 	}
 
@@ -32,7 +32,7 @@ public class ManagerFiles implements FilenameFilter{
 			if (file.isDirectory()) {
 				obtainFilesInMainFolder(file);
 			}else {
-				filesFound.add(file.getName());
+				filesFound.add(file);
 				verifySubFolderExist(file);
 			}
 		}
@@ -78,8 +78,8 @@ public class ManagerFiles implements FilenameFilter{
 	public void printFilesFound() {
 		if (!filesFound.isEmpty()) {
 			System.out.println("Subcarpetas");
-			for (String file: filesFound) {
-				System.out.println(file);								
+			for (File file: filesFound) {
+				System.out.println(file.getName());								
 			}
 		}
 	}

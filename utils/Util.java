@@ -2,10 +2,12 @@ package utils;
 
 import java.awt.Container;
 import java.awt.GridBagConstraints;
+import java.io.File;
 import java.util.regex.Pattern;
 
 import javax.swing.JLabel;
 
+import models.ConstantsMOD;
 import views.ConstantsGUI;
 
 public class Util {
@@ -23,6 +25,10 @@ public class Util {
 	public static String getNameOnly(String file) {
 		String separator = Pattern.quote(".");
 		return file.split(separator)[0].toString();
+	}
+	
+	public static double calculateSizeFile(File file) {
+		return file.length()/ConstantsMOD.SIZE_MB;
 	}
 	
 	public static void generateBasicGrid(Container comp, GridBagConstraints gbc){
