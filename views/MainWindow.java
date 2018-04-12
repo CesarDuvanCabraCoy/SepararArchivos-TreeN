@@ -34,5 +34,6 @@ public class MainWindow extends JFrame {
 	
 	public void paintTree(NodeTN<String> root) {
 		jpTreeFiles.printJTree(root);
+		this.repaint();
 	}
 }

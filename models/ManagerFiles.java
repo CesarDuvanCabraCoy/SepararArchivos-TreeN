@@ -53,8 +53,8 @@ public class ManagerFiles implements FilenameFilter{
 	
 	public void createNodesBySize(String size) {
 		for (NodeTN<String> nodeExtension: treeFiles.getRoot().getChilds()) {
-			nodeExtension.addNode(new NodeTN<String>(ConstantsMOD.FOLDER_HIGHER + size));
 			nodeExtension.addNode(new NodeTN<String>(ConstantsMOD.FOLDER_LESS + size));
+			nodeExtension.addNode(new NodeTN<String>(ConstantsMOD.FOLDER_HIGHER + size));
 		}
 	}
 	
@@ -62,6 +62,19 @@ public class ManagerFiles implements FilenameFilter{
 		if (!subFolders.isEmpty()) {
 			for (String subFolder: subFolders) {
 				treeFiles.addNode(treeFiles.getRoot(), subFolder);							
+			}
+		}
+	}
+	
+	public void addFilesToCorrespondingFolder(int size) throws ExceptionNodeNotFound {
+		if (!filesFound.isEmpty()) {
+			for (File file : filesFound) {
+				NodeTN<String> father = treeFiles.searchNode(Util.getExtension(file.getName()));
+				if (Util.calculateSizeFile(file) <= size) {
+					treeFiles.addNode(father.getChilds().get(0), Util.getNameOnly(file.getName()));
+				}else {
+					treeFiles.addNode(father.getChilds().get(1), Util.getNameOnly(file.getName()));
+				}
 			}
 		}
 	}

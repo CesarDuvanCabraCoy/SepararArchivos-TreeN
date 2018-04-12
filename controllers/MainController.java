@@ -42,9 +42,14 @@ public class MainController implements ActionListener{
 	}
 
 	private void getSize() {
-		String size = String.valueOf(jdSelectSize.getSizeFile());
-		managerFiles.createNodesBySize(size);
+		int size = jdSelectSize.getSizeFile();
+		managerFiles.createNodesBySize(String.valueOf(size));
 		jdSelectSize.setVisible(false);
+		try {
+			managerFiles.addFilesToCorrespondingFolder(size);
+		} catch (ExceptionNodeNotFound e) {
+			e.printStackTrace();
+		}
 		mainWindow.paintTree(managerFiles.getTreeFiles().getRoot());
 	}
 
@@ -53,8 +58,6 @@ public class MainController implements ActionListener{
 		managerFiles.initTree(file.getName());
 		System.out.println("Folder: " + managerFiles.getTreeFiles().getRoot().getInfo());
 		managerFiles.obtainFilesInMainFolder(file);
-		managerFiles.printFilesFound();
 		managerFiles.addSubFolders();
-		managerFiles.printSubFolders();
 	}
 }
